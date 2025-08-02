@@ -39,9 +39,19 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
+    if (_counter > 0) {
+      setState(() {
+        _counter--;
+      });
+    } else {
+      // Optional: show a message if already 0
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Counter is already at zero'),
+          duration: Duration(milliseconds: 800),
+        ),
+      );
+    }
   }
 
   void _resetCounter() {
@@ -49,20 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter = 0;
     });
 
-    // Show a snackbar on reset
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Counter reset to zero'),
         duration: Duration(seconds: 1),
       ),
     );
-  }
-
-  String _getMessage() {
-    if (_counter == 0) return "Let's start counting!";
-    if (_counter > 10) return "That's a big number!";
-    if (_counter < 0) return "Negative? Interesting!";
-    return "Keep going...";
   }
 
   @override
@@ -86,15 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                 fontSize: 48,
                 fontWeight: FontWeight.bold,
-                color: _counter < 0
-                    ? Colors.red
-                    : (_counter > 10 ? Colors.orange : Colors.green),
+                color: Colors.deepPurple,
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              _getMessage(),
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
             ),
             const SizedBox(height: 30),
             Row(
