@@ -44,7 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
         _counter--;
       });
     } else {
-      // Optional: show a message if already 0
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Counter is already at zero'),
@@ -82,16 +81,31 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
               style: TextStyle(fontSize: 16),
             ),
-            const SizedBox(height: 10),
-            Text(
-              '$_counter',
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
-                color: Colors.deepPurple,
+            const SizedBox(height: 20),
+
+            // Stylish counter card
+            Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 40.0),
+                child: Text(
+                  '$_counter',
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple,
+                  ),
+                ),
               ),
             ),
+
             const SizedBox(height: 30),
+
+            // Row of buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -99,22 +113,36 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: _decrementCounter,
                   icon: const Icon(Icons.remove),
                   label: const Text("Decrease"),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton.icon(
                   onPressed: _resetCounter,
                   icon: const Icon(Icons.refresh),
                   label: const Text("Reset"),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 10),
                 ElevatedButton.icon(
                   onPressed: _incrementCounter,
                   icon: const Icon(Icons.add),
                   label: const Text("Increase"),
-                  style:
-                  ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
                 ),
               ],
             ),
